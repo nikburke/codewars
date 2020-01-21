@@ -1,26 +1,47 @@
 import sys
 import math
 
-# Цикл while представляет игру.
-# Каждая итерация представляет собой ход игры
-# где вам даны входные данные (высоты гор)
-# и где вы должны напечатать вывод (индекс горы, чтобы стрелять на)
-# Вводимые данные автоматически обновляются в соответствии с вашими последними действиями.
 
+# Автогенерированный код ниже направлен на то, чтобы помочь вам разобрать
+# стандартный ввод в соответствии с постановкой задачи.
 
-
-# игровой цикл
+# w: ширина здания.
+# h: высота здания.
+minX = 0
+minY = 0
+maxX, maxY = [int(i) for i in input().split()]
+_ = input()
+x, y = [int(i) for i in input().split()]
 while True:
-    k =-1
-    d =-1
-    for i in range(8):
-      k+=1
-      mountain_h = int(input()) # обозначает высоту одной горы.
-      if mountain_h > d:
-        index = k
-        d = mountain_h
-    # Написать действие с помощью печати
-    # To debug: печать ("сообщения отладки...", file=sys.поток stderr)
-
-    # Указатель горы, по которой нужно стрелять.
-    print(index)
+    bomb_dir = input()
+    if bomb_dir == 'U':
+        minX = x
+        maxX = x
+        maxY = y
+    elif bomb_dir == 'UR':
+        minX = x
+        maxY = y
+    elif bomb_dir == 'R':
+        minY = y
+        maxY = y
+        minX = x
+    elif bomb_dir == 'DR':
+        minY = y
+        minX = x
+    elif bomb_dir == 'D':
+        minX = x
+        maxX = x
+        minY = y
+    elif bomb_dir == 'DL':
+        minY = y
+        maxX = x
+    elif bomb_dir == 'L':
+        minY = y
+        maxY = y
+        maxX = x
+    elif bomb_dir == 'UL':
+        maxX = x
+        maxY = y
+    x = (minX + maxX)//2;
+    y = (minY + maxY)//2;
+    print(x,y)
